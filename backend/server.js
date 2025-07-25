@@ -1,32 +1,18 @@
-import app from "./app.js";
-import cloudinary from "cloudinary";
-
-cloudinary.v2.config({
-  cloud_name: "",
-  api_key: "",
-  api_secret: "",
-});
-
-app.listen(process.env.PORT, () => {
-  console.log(`Server running at port ${process.env.PORT}`);
-});
-
-
-import dotenv from "dotenv";
+ import dotenv from "dotenv";
 dotenv.config();
 
 import app from "./app.js";
 import cloudinary from "cloudinary";
 import mongoose from "mongoose";
 
-// Cloudinary Config
+// ✅ Cloudinary Config
 cloudinary.v2.config({
-  cloud_name: "Zayba's-app ",
-  api_key: 583421987654323,
-  api_secret:hdsf8723klsdf9872ksm2f344,
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API_KEY,
+  api_secret: process.env.CLOUD_API_SECRET,
 });
 
-// MongoDB Connection
+// ✅ MongoDB Connection
 mongoose
   .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
@@ -35,7 +21,7 @@ mongoose
   .then(() => {
     console.log("✅ Connected to MongoDB Atlas");
 
-    // Start Server Only After DB Connects
+    // ✅ Start Server After DB Connects
     app.listen(process.env.PORT || 4000, () => {
       console.log(`🚀 Server running on port ${process.env.PORT || 4000}`);
     });

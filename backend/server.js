@@ -2,9 +2,9 @@ import app from "./app.js";
 import cloudinary from "cloudinary";
 
 cloudinary.v2.config({
-  cloud_name: process.env.CLOUDINARY_CLIENT_NAME,
-  api_key: process.env.CLOUDINARY_CLIENT_API,
-  api_secret: process.env.CLOUDINARY_CLIENT_SECRET,
+  cloud_name: "Zayba's-app",
+  api_key: "583421987654323",
+  api_secret: "hdsf8723klsdf9872ksm2f344",
 });
 
 app.listen(process.env.PORT, () => {

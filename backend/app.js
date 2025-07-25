@@ -1,4 +1,4 @@
-import express from "express";
+ import express from "express";
 import { dbConnection } from "./database/dbConnection.js";
 import jobRouter from "./routes/jobRouter.js";
 import userRouter from './routes/userRouter.js';
@@ -10,6 +10,7 @@ import cookieParser from "cookie-parser";
 import fileUpload from "express-fileupload";
 import dotenv from "dotenv";
 import { User } from "./models/userSchema.js";
+
 const app = express();
 config({ path: "./config/config.env" });
 
@@ -31,10 +32,21 @@ app.use(
     tempFileDir: "/tmp/",
   })
 );
+
+// Routers
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/job", jobRouter);
 app.use("/api/v1/application", applicationRouter);
+
+// ✅ Add this route to handle GET /
+app.get("/", (req, res) => {
+  res.send("✅ MERN Job-Seeking Backend is Running!");
+});
+
+// Connect DB
 dbConnection();
 
+// Error handling middleware
 app.use(errorMiddleware);
+
 export default app;

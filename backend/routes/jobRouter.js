@@ -1,4 +1,4 @@
-import express from "express";
+ import express from "express";
 import {
   deleteJob,
   getAllJobs,
@@ -11,6 +11,12 @@ import { isAuthenticated } from "../middlewares/auth.js";
 
 const router = express.Router();
 
+// ✅ Health check route
+router.get("/ping", (req, res) => {
+  res.send("Job route connected ✅");
+});
+
+// Routes
 router.get("/getall", getAllJobs);
 router.post("/post", isAuthenticated, postJob);
 router.get("/getmyjobs", isAuthenticated, getMyJobs);
